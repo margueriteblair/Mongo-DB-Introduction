@@ -1,0 +1,26 @@
+{
+  "name": "mongo-db",
+  "version": "1.0.0",
+  "description": "Repository for all servers and projects that utilize MongoDB and the npm Mongoose package.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/margueriteblair/Mongo-DB-Introduction.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/margueriteblair/Mongo-DB-Introduction/issues"
+  },
+  "homepage": "https://github.com/margueriteblair/Mongo-DB-Introduction#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.28"
+  }
+}
