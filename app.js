@@ -22,6 +22,9 @@ if (typeof(URI) === 'string') {
 }
 //importing routers
 const homeRouter = require('./routes/homeRouter')
+const schema = new mongoose.Schema({
+
+});
 
 app.use('/', homeRouter);
 
