@@ -10,10 +10,9 @@ if (typeof(URI) === 'string') {
     const mongoOptions = { useNewUrlParser: true, useUnifiedTopology: true}
     mongoose.connect(URI, mongoOptions, (error) => {
         if (error) {
-            console.error(`\nError Connecting to MongoDB: ${error.message || err} \n`);
+            console.error(`\nError Connecting to MongoDB: ${error.message || error} \n`);
         } else {
-            console.log('Server connected to DB');
-            
+            console.log('Server connected to DB'); 
         }
     })
 } else {
@@ -22,9 +21,7 @@ if (typeof(URI) === 'string') {
 }
 //importing routers
 const homeRouter = require('./routes/homeRouter')
-const schema = new mongoose.Schema({
 
-});
 
 app.use('/', homeRouter);
 
