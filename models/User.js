@@ -29,6 +29,7 @@ const UserSchema = new mongoose.Schema({
 
 const UserModel = mongoose.model('user', UserSchema);
 
+
 module.exports = UserModel;
 //this allows you to interface with your database in any other file in your program
 
