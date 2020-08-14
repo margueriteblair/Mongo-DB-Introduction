@@ -18,3 +18,10 @@ router.patch(
         }
     }
 )
+
+router.post(
+    '/register',
+    async (req, res) => {
+        console.log('test', req.body)
+    }
+)

@@ -2,8 +2,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
+
 //setting up 
 let app = express();
+app.use(express.static('public'))
 const port = process.env.PORT || 3000
 const URI = process.env.MONGO_DB
 if (typeof(URI) === 'string') {
