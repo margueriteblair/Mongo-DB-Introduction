@@ -14,6 +14,10 @@ router.patch(
         }
         catch (error){
             console.error(error.message);
+
+            res.status(500).json({
+                message: error.message
+            })
         }
     }
 )
@@ -21,6 +25,15 @@ router.patch(
 router.post(
     '/register',
     async (req, res) => {
-        console.log('test', req.body)
-    }
+        console.log('test', req.body);
+
+        try {
+            await User.create(req.body);
+            res.json({message: 'success!'})
+        } catch {
+            res.status(500).json({message: error.message})
+        }
+        }
 )
+
+module.exports = router;
