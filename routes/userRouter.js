@@ -1,5 +1,4 @@
 const User = require('../models/User') //this requires the User model
-const { Router } = require('express')
 const {Router} = require('express');
 //uppercase indicates that it's a class
 

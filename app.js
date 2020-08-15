@@ -3,6 +3,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
 
+//imported middleware
+const firstMid = require('./iddleware/firstMiddleware')
+
 //setting up 
 let app = express();
 app.use(express.static('public'))
@@ -23,9 +26,11 @@ if (typeof(URI) === 'string') {
 }
 //importing routers
 const homeRouter = require('./routes/homeRouter')
+const userRouter = require('./routes/userRouter')
 
 
 app.use('/', homeRouter);
+app.use('/user', userRouter);
 
 
 app.listen(port, () => {
