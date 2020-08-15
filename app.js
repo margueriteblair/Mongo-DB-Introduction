@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 
 //imported middleware
-const firstMid = require('./iddleware/firstMiddleware')
+const firstMid = require('./middleware/firstMiddleware')
 
 //setting up 
 let app = express();
