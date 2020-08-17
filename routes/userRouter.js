@@ -30,8 +30,8 @@ router.post(
         try {
             await User.create(req.body);
             res.json({message: 'success!'})
-        } catch {
-            res.status(500).json({message: Error.message})
+        } catch (error) {
+            res.status(500).json({message: error.message})
         }
         }
 )
