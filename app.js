@@ -9,6 +9,7 @@ const firstMid = require('./middleware/firstMiddleware')
 //setting up 
 let app = express();
 app.use(express.static('public'))
+app.use(express.json())
 
 //env vars
 const port = process.env.PORT || 3000
