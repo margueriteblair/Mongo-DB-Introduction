@@ -35,5 +35,19 @@ router.post(
         }
         }
 )
+//to update information
+router.put('/updateInfro/:id', (req, res) => {
+
+})
+
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        
+    } catch (error) {
+        const msg = error.message || err;
+        console.log(msg)
+        res.status(500).json({message: msg});
+    }
+})
 
 module.exports = router;
