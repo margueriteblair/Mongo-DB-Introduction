@@ -1,5 +1,6 @@
 const User = require('../models/User') //this requires the User model
 const {Router} = require('express');
+const findUser = require('../middleware/findUser');
 //uppercase indicates that it's a class
 
 const router = new Router();
@@ -36,13 +37,18 @@ router.post(
         }
 )
 //to update information
-router.put('/updateInfro/:id', (req, res) => {
-
-})
-
-router.delete('/delete/:id', async (req, res) => {
+router.put('/update/:id', findUser, async (req, res) => {
     try {
         
+    } catch (error) {
+        
+    }
+})
+
+router.delete('/delete/:id', findUser, async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.userId);
+        res.send(`Deleted User!`)
     } catch (error) {
         const msg = error.message || err;
         console.log(msg)

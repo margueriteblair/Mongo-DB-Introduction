@@ -5,6 +5,7 @@ require('dotenv').config()
 
 //imported middleware
 const firstMid = require('./middleware/firstMiddleware')
+const findUser = require('./middleware/findUser')
 
 //setting up 
 let app = express();
