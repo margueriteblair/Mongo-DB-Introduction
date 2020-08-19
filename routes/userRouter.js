@@ -39,9 +39,13 @@ router.post(
 //to update information
 router.put('/update/:id', findUser, async (req, res) => {
     try {
-        
+        await User.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}).then((user)=> {
+            res.json({user})
+        })
     } catch (error) {
-        
+        const msg = error.message || error;
+        console.log(msg)
+        res.status(500).json({message: msg});
     }
 })
 
@@ -50,7 +54,7 @@ router.delete('/delete/:id', findUser, async (req, res) => {
         await User.findByIdAndDelete(req.userId);
         res.send(`Deleted User!`)
     } catch (error) {
-        const msg = error.message || err;
+        const msg = error.message || error;
         console.log(msg)
         res.status(500).json({message: msg});
     }
