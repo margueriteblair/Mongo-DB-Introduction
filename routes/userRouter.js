@@ -41,6 +41,9 @@ router.put('/update/:id', findUser, async (req, res) => {
     try {
         const updatedUser = await User.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true})
         res.json(updatedUser)
+        //await User.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}).then((user) => {
+        //res.json(user)
+     //   }) This is a returned promise that executes the new user object
     } catch (error) {
         const msg = error.message || error;
         console.log(msg)
