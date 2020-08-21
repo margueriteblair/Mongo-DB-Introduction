@@ -4,6 +4,7 @@ window.onload = () => {
     const username = document.createElement('input')
     const password = document.createElement('input')
     const submitChange = document.createElement('button');
+    const form = document.createElement('form')
 
     header.innerText = 'Update User Information:'
     submitChange.innerText = 'Submit Changes'
@@ -13,10 +14,30 @@ window.onload = () => {
     email.name = 'email'
     username.name = 'username'
     password.name = "password"
+    form.id = 'form';
     document.body.appendChild(header);
-    document.body.appendChild(username);
-    document.body.appendChild(email);
-    document.body.appendChild(password);
-    document.body.appendChild(submitChange);
+    document.body.appendChild(form)
+    form.appendChild(username);
+    form.appendChild(email);
+    form.appendChild(password);
+    form.appendChild(submitChange);
+
+    submitChange.addEventListener('mouseup', () => {
+        console.log('Changes submitted');
+        const formElem = document.getElementById('form')
+        const reqBody = {};
+        for (const input of formElem) {
+            reqBody[input.name] = input.value
+        }
+        console.log(reqBody);
+        const xhr = new XMLHttpRequest();
+        xhr.open('PUT', endpoint);
+        xhr.onload = () => {
+            const res = JSON.parse(xhr.responseText);
+            console.log(res);
+        }
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(reqBody));
+    })
 
 }
