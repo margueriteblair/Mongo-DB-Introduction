@@ -61,8 +61,6 @@ router.delete('/delete/:id', findUser, async (req, res) => {
         res.status(500).json({message: msg});
     }
 })
-router.get('/', (req, res) => {
-    res.sendFile(process.cwd() + `/public/update.html`);
-})
+
 
 module.exports = router;

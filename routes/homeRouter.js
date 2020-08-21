@@ -14,4 +14,8 @@ router.get('/login',
         res.sendFile(filePath);
     })
 
+router.get('/update', (req, res) => {
+    const filePath = process.cwd() + '/public/update.html'
+})
+
 module.exports = router
