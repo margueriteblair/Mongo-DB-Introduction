@@ -1,6 +1,7 @@
 window.onload = () => {
     const header = document.createElement('h1')
-    const email = document.createElement('input')
+    const currentEmail = document.createElement('input')
+    const newEmail = document.createElement('input');
     const username = document.createElement('input')
     const password = document.createElement('input')
     const submitChange = document.createElement('button');
@@ -8,17 +9,18 @@ window.onload = () => {
 
     header.innerText = 'Update User Information:'
     submitChange.innerText = 'Submit Changes'
-    email.placeholder = 'Updated Email'
+    currentEmail.placeholder = 'Input current email'
+    newEmail.placeholder = "New email"
     username.placeholder = 'Update Username'
     password.placeholder = 'Update Password'
-    email.name = 'email'
+    currentEmail.name = 'currentEmail'
     username.name = 'username'
     password.name = "password"
     form.id = 'form';
     document.body.appendChild(header);
     document.body.appendChild(form)
     form.appendChild(username);
-    form.appendChild(email);
+    form.appendChild(currentEmail);
     form.appendChild(password);
     form.appendChild(submitChange);
 
