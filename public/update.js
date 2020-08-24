@@ -14,6 +14,9 @@ window.onload = () => {
     submitChange.innerText = 'Submit Changes'
     currentEmail.placeholder = 'Input current email'
     newEmail.placeholder = "New email"
+    newEmail.className = "new"
+    newPassword.className = 'new'
+    newUsername.className = 'new';
     newUsername.placeholder = "New Username"
     oldUsername.placeholder = 'Input current Username'
     oldPassword.placeholder = 'Current Password'
@@ -38,9 +41,9 @@ window.onload = () => {
 
     submitChange.addEventListener('mouseup', () => {
         console.log('Changes submitted');
-        const formElem = document.getElementById('form')
+        const newClass = document.getElementsByClassName('new')
         const reqBody = {};
-        for (const input of formElem) {
+        for (const input of newClass) {
             reqBody[input.name] = input.value
         }
         console.log(reqBody);
