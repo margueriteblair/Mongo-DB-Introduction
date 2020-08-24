@@ -41,6 +41,8 @@ window.onload = () => {
 
     submitChange.addEventListener('mouseup', () => {
         console.log('Changes submitted');
+        console.log(location.origin)
+        const endpoint = location.origin + '/user/update'
         const newClass = document.getElementsByClassName('new')
         const reqBody = {};
         for (const input of newClass) {
