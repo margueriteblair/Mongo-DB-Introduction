@@ -42,10 +42,10 @@ window.onload = () => {
     submitChange.addEventListener('mouseup', () => {
         console.log('Changes submitted');
         console.log(location.origin)
-        const endpoint = location.origin + '/user/update'
-        const newClass = document.getElementsByClassName('new')
+        const endpoint = `${location.origin}'/user/update/${formElm.id.value}`  //not colon id 
+        const formElm = document.getElementById('form')
         const reqBody = {};
-        for (const input of newClass) {
+        for (const input of formElm) {
             reqBody[input.name] = input.value
         }
         console.log(reqBody);
