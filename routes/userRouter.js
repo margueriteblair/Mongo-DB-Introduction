@@ -37,7 +37,7 @@ router.post(
         }
 )
 //to update information
-router.put('/update/:email', findUser, async (req, res) => {
+router.put('/update/:email', async (req, res) => {
     try {
         const updatedUser = await User.findOneAndUpdate({email: req.params.email}, req.body, {new: true})
         res.json(updatedUser)
@@ -51,7 +51,7 @@ router.put('/update/:email', findUser, async (req, res) => {
     }
 })
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id', findUser, async (req, res) => {
     try {
         await User.findByIdAndDelete(req.userId);
         res.send(`Deleted User!`)
