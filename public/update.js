@@ -27,15 +27,25 @@ window.onload = () => {
     form.appendChild(newEmail);
     form.appendChild(newPassword);
     document.body.appendChild(submitChange);
-
+//assumption that we're using the admin account for this
     submitChange.addEventListener('mouseup', () => {
         console.log('Changes submitted');
         console.log(location.origin)
         const formElm = document.getElementById('form')
+        const userID = formElm.id.value.trim();
         const reqBody = {};
+        if (formElm.id.value.trim() == "") {
+            alert('Must provide user ID')
+        } else if (userID.length !== 24){
+            alert(`ID must be in proper format with 24 characters`)
+        }
         for (const input of formElm) {
-            if (input.value.length > 0) {
+            if (input.value.trim() !== "") {
                 reqBody[input.name] = input.value
+            } else {
+                const missinginputs = [];
+                missinginputs.push(input.name)
+                alert(`${input.name} needs a value.`)
             }
         }
         console.log(reqBody);
