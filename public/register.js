@@ -74,7 +74,7 @@ window.onload = () => {
             }
         }
         console.log(reqBody)
-        const endpoint = location.origin + '/user/post/new';
+        const endpoint = location.origin + '/user/register';
         const xhr = new XMLHttpRequest();
         xhr.open('POST', endpoint)
         xhr.onload = () => {
