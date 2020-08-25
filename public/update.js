@@ -37,6 +37,7 @@ window.onload = () => {
         const formElm = document.getElementById('form')
         const userID = formElm.id.value.trim();
         const reqBody = {};
+
         if (formElm.id.value.trim() == "") {
             return alert('Must provide user ID')
         } else if (userID.length !== 24){
@@ -49,11 +50,12 @@ window.onload = () => {
             } else if (input.name !== 'id'){
                 const missinginputs = [];
                 missinginputs.push(input.name)
-                alert(`${input.name} needs a value.`)
+                return alert(`${input.name} needs a value.`)
             }
         }
         console.log(reqBody);
         const endpoint = `${location.origin}/user/update/${formElm.id.value}`  //not colon id
+        console.log(endpoint)
         const xhr = new XMLHttpRequest();
         xhr.open('PUT', endpoint)
         xhr.onload = () => {
