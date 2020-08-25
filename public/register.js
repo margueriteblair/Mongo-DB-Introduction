@@ -33,6 +33,12 @@ window.onload = () => {
     submitButton.innerText = 'Submit';
     header.innerText = 'Register Today!';
     form.id = 'form';
+    //frontend validation
+    userNameInput.minLength = 3;
+    userNameInput.maxLength = 33;
+    passwordInput.minLength = 7;
+    emailInput.minLength = 3;
+    emailInput.maxLength = 200;
     
     
     document.body.appendChild(header)
@@ -49,15 +55,8 @@ window.onload = () => {
         input.classList.add('input');
     }
     
-    
-    submitButton.addEventListener('mouseup', () => {
-        console.log('You submitted your information!')
-        for (const input of inputs) {
-            console.log(input.value)
-        }
     submitButton.onclick = submitReg;
 
-    })
     
     }
     
