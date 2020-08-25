@@ -2,36 +2,29 @@ window.onload = () => {
     const header = document.createElement('h1')
     const id = document.createElement('input')
     const newEmail = document.createElement('input');
-    const oldUsername = document.createElement('input')
     const newUsername = document.createElement('input')
-    const oldPassword = document.createElement('input')
     const newPassword = document.createElement('input')
     const submitChange = document.createElement('button');
     const form = document.createElement('form');
-    const breakDiv = document.createElement('br');
 
     header.innerText = 'Update User Information:'
     submitChange.innerText = 'Submit Changes'
+    newEmail.name = "email"
+    newUsername.name = 'username';
+    newPassword.name = 'password'
     id.placeholder = 'User _id'
-    newEmail.placeholder = "New email"
-    newEmail.className = "new"
-    newPassword.className = 'new'
-    newUsername.className = 'new';
-    newUsername.placeholder = "New Username"
-    oldUsername.placeholder = 'Input current Username'
-    oldPassword.placeholder = 'Current Password'
+    newEmail.placeholder = "Email"
+    newUsername.placeholder = "Username"
     newPassword.placeholder = "New password"
     id.name = 'id'
-    oldUsername.name = 'oldUsername'
-    oldPassword.name = "oldPassword"
     form.id = 'form';
+    
     document.body.appendChild(header);
     document.body.appendChild(form)
     form.appendChild(id);
     form.appendChild(newUsername)
-    //form.innerHTML = '<br>'
-    form.appendChild(breakDiv);
-    form.appendChild(oldPassword)
+    form.appendChild(newEmail);
+    form.appendChild(newPassword);
     document.body.appendChild(submitChange);
 
     submitChange.addEventListener('mouseup', () => {
