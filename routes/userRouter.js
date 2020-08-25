@@ -5,11 +5,8 @@ const findUser = require('../middleware/findUser');
 
 const router = new Router();
 
-router.patch(
-    '/login',
-    (req, res) => {
+router.patch('/login', (req, res) => {
         console.log(req.body, 'LoginTest');
-
         try {
             res.json({message: 'success!'})
         }
