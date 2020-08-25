@@ -20,12 +20,12 @@ window.onload = () => {
     form.name = 'form';
 
     emailInput.id = 'emailInput';
-    emailInput.name = 'emailInput';
+    emailInput.name = 'email';
     emailInput.placeholder = 'Enter Email';
     emailInput.type = 'email';
 
     passInput.id = 'passInput';
-    passInput.name = 'passInput';
+    passInput.name = 'password';
     passInput.placeholder = 'Enter Password';
     passInput.type = 'password';
 
@@ -49,12 +49,12 @@ window.onload = () => {
     }
 
     //set event listener for submit btn
-    submitButton.addEventListener('click', function(){
-        console.log('Login info submitting....');
-        for (const forms of form.children) {
-            console.log(forms);
-        }
-    });
+    // submitButton.addEventListener('click', function(){
+    //     console.log('Login info submitting....');
+    //     for (const forms of form.children) {
+    //         console.log(forms);
+    //     }
+    // });
 
     submitButton.onclick = submitReg;
 
@@ -65,12 +65,16 @@ function submitReg() { //any object that is iteriable
     const reqBody = {}; //this is where request body will go
     for (const input of formElem) {
         //console.log(input.value);
-        reqBody[input.name] = input.value
+        reqBody[input.name] = input.value.trim();
     }
-    //console.log(reqBody);
-    const endpoint = location.origin + '/user/login';
-    //console.log(reqBody);
+    if (!reqBody.email.match(/\w+\@\w+\.\w+/) || reqBody.email.length < 6 || reqBody.email.length > 33) {
+        return alert(`Please enter valid email address.`)
+    }
+    if (reqBody.password.length < 7) {
+        return alert(`Please enter valid password`)
+    }
 
+    const endpoint = location.origin + '/user/login';
     const xhr = new XMLHttpRequest();
     xhr.open('PATCH', endpoint ); //must do PATCH req instead
     xhr.onload = () => {
