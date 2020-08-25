@@ -1,6 +1,6 @@
 window.onload = () => {
     const header = document.createElement('h1')
-    const id = document.createElement('input')
+    const formId = document.createElement('input')
     const newEmail = document.createElement('input');
     const newUsername = document.createElement('input')
     const newPassword = document.createElement('input')
@@ -12,16 +12,17 @@ window.onload = () => {
     newEmail.name = "email"
     newUsername.name = 'username';
     newPassword.name = 'password'
-    id.placeholder = 'User _id'
+    formId.placeholder = 'User _id'
     newEmail.placeholder = "Email"
     newUsername.placeholder = "Username"
     newPassword.placeholder = "New password"
-    id.name = 'id'
+    formId.name = 'id'
+    formId.id = 'id'
     form.id = 'form';
-    
+
     document.body.appendChild(header);
     document.body.appendChild(form)
-    form.appendChild(id);
+    form.appendChild(formId);
     form.appendChild(newUsername)
     form.appendChild(newEmail);
     form.appendChild(newPassword);
@@ -30,7 +31,6 @@ window.onload = () => {
     submitChange.addEventListener('mouseup', () => {
         console.log('Changes submitted');
         console.log(location.origin)
-        const endpoint = `${location.origin}'/user/update/${formElm.formId.value}`  //not colon id 
         const formElm = document.getElementById('form')
         const reqBody = {};
         for (const input of formElm) {
@@ -39,8 +39,9 @@ window.onload = () => {
             }
         }
         console.log(reqBody);
+        const endpoint = `${location.origin}/user/update/${formElm.id.value}`  //not colon id
         const xhr = new XMLHttpRequest();
-        xhr.open('PUT', endpoint);
+        xhr.open('PUT', endpoint)
         xhr.onload = () => {
             const res = JSON.parse(xhr.responseText);
             console.log(res);
