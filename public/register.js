@@ -1,5 +1,3 @@
-
-
 window.onload = () => {
     //create a form and append to a div
     //create blank elements 
@@ -57,10 +55,23 @@ window.onload = () => {
     
     submitButton.onclick = submitReg;
 
-    
-    }
-    
     function submitReg() {
+        if (emailInput.value.length < 6 || emailInput.value.length > 200 || !emailInput.value.match(/\@/)) {
+            setTimeout(() => {
+                return alert(`Email must be between 6 and 200 characters and have a valid @.`)
+            }, 1000);
+        }
+        if (userNameInput.value.length < 7 || emailInput.value.length > 33) {
+            return alert(`Username must be between 7 and 33.`)
+
+        }
+        if (passwordInput.value !== passwordConfirm.value) {
+            return alert(`Passwords must match.`)
+        }
+        if (passwordInput.value.length < 7) {
+                return alert(`Password needs minimum value of 7 characters`);
+
+        }
         const formElem = document.getElementById('form');
         const reqBody = {};
         for (const input of formElem) {
@@ -74,7 +85,7 @@ window.onload = () => {
         console.log(reqBody)
         const endpoint = location.origin + '/user/register';
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', endpoint)
+        xhr.open('POST', endpoint);
         xhr.onload = () => {
             const res = JSON.parse(xhr.responseText)
             console.log(res)
@@ -82,3 +93,5 @@ window.onload = () => {
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(JSON.stringify(reqBody))
     }
+    }
+    
