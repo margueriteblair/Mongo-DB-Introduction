@@ -46,7 +46,7 @@ window.onload = () => {
         for (const input of formElm) {
             if (input.value.trim() !== "" && input.name !== 'id') {
                 reqBody[input.name] = input.value
-            } else {
+            } else if (input.name !== 'id'){
                 const missinginputs = [];
                 missinginputs.push(input.name)
                 alert(`${input.name} needs a value.`)
