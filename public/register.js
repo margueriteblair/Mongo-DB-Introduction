@@ -68,9 +68,13 @@ window.onload = () => {
             if (input.value.trim() !== "") {
                 reqBody[input.name] = input.value
             } else {
-                const missing = document.createElement(li)
-                missing.innerText = `${input.name} needs a value.`
-                document.body.appendChild(missing)
+                const missing = [];
+                missing.push(input.name)
+                for (let i = 0; i < missing.length; i++) {
+                    let elem = document.createElement('li');
+                    elem.innerText = `${missing[i]} needs a value.`
+                    document.body.appendChild(elem);
+                }
             }
         }
         console.log(reqBody)
