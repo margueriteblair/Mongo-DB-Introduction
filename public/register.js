@@ -56,7 +56,7 @@ window.onload = () => {
             console.log(input.value)
         }
     submitButton.onclick = submitReg;
-        //console.log(form.children)
+
     })
     
     }
@@ -67,14 +67,9 @@ window.onload = () => {
         for (const input of formElem) {
             if (input.value.trim() !== "") {
                 reqBody[input.name] = input.value
+                continue;
             } else {
-                const missing = [];
-                missing.push(input.name)
-                for (let i = 0; i < missing.length; i++) {
-                    let elem = document.createElement('li');
-                    elem.innerText = `${missing[i]} needs a value.`
-                    document.body.appendChild(elem);
-                }
+                return alert(`Missing fields`)
             }
         }
         console.log(reqBody)
