@@ -19,6 +19,9 @@ window.onload = () => {
     formId.name = 'id'
     formId.id = 'id'
     form.id = 'form';
+    newEmail.minLength = 3;
+    newPassword.minLength = 7;
+    newUsername.minLength = 7;
 
     document.body.appendChild(header);
     document.body.appendChild(form)
@@ -35,12 +38,13 @@ window.onload = () => {
         const userID = formElm.id.value.trim();
         const reqBody = {};
         if (formElm.id.value.trim() == "") {
-            alert('Must provide user ID')
+            return alert('Must provide user ID')
         } else if (userID.length !== 24){
-            alert(`ID must be in proper format with 24 characters`)
+            return alert(`ID must be in proper format with 24 characters`)
         }
+        console.log(`Passes ID test.`)
         for (const input of formElm) {
-            if (input.value.trim() !== "") {
+            if (input.value.trim() !== "" && input.name !== 'id') {
                 reqBody[input.name] = input.value
             } else {
                 const missinginputs = [];
