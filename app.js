@@ -2,6 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
+const morgan = require('morgan');
 
 //imported middleware
 const firstMid = require('./middleware/firstMiddleware')
@@ -34,6 +35,9 @@ if (typeof(URI) === 'string') {
 //importing routers
 const homeRouter = require('./routes/homeRouter')
 const userRouter = require('./routes/userRouter')
+
+//middlewares
+app.use(morgan('dev'))
 
 
 app.use('/', homeRouter);

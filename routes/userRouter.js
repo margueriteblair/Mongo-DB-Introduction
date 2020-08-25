@@ -37,9 +37,9 @@ router.post(
         }
 )
 //to update information
-router.put('/update/:email', async (req, res) => {
+router.put('/update/:id', async (req, res) => {
     try {
-        const updatedUser = await User.findOneAndUpdate({email: req.params.email}, req.body, {new: true})
+        const updatedUser = await User.findOneAndUpdate({email: req.params.id}, req.body, {new: true})
         res.json(updatedUser)
         //await User.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}).then((user) => {
         //res.json(user)

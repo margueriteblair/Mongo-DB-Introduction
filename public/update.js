@@ -1,6 +1,6 @@
 window.onload = () => {
     const header = document.createElement('h1')
-    const currentEmail = document.createElement('input')
+    const id = document.createElement('input')
     const newEmail = document.createElement('input');
     const oldUsername = document.createElement('input')
     const newUsername = document.createElement('input')
@@ -12,7 +12,7 @@ window.onload = () => {
 
     header.innerText = 'Update User Information:'
     submitChange.innerText = 'Submit Changes'
-    currentEmail.placeholder = 'Input current email'
+    id.placeholder = 'User _id'
     newEmail.placeholder = "New email"
     newEmail.className = "new"
     newPassword.className = 'new'
@@ -21,32 +21,29 @@ window.onload = () => {
     oldUsername.placeholder = 'Input current Username'
     oldPassword.placeholder = 'Current Password'
     newPassword.placeholder = "New password"
-    currentEmail.name = 'currentEmail'
+    id.name = 'id'
     oldUsername.name = 'oldUsername'
     oldPassword.name = "oldPassword"
     form.id = 'form';
     document.body.appendChild(header);
     document.body.appendChild(form)
-    form.appendChild(oldUsername);
+    form.appendChild(id);
     form.appendChild(newUsername)
-    document.createElement('br');
-    form.appendChild(currentEmail);
-    form.appendChild(newEmail);
     //form.innerHTML = '<br>'
     form.appendChild(breakDiv);
-    form.appendChild(newPassword);
     form.appendChild(oldPassword)
-    form.appendChild(breakDiv);
-    form.appendChild(submitChange);
+    document.body.appendChild(submitChange);
 
     submitChange.addEventListener('mouseup', () => {
         console.log('Changes submitted');
         console.log(location.origin)
-        const endpoint = `${location.origin}'/user/update/${formElm.id.value}`  //not colon id 
+        const endpoint = `${location.origin}'/user/update/${formElm.formId.value}`  //not colon id 
         const formElm = document.getElementById('form')
         const reqBody = {};
         for (const input of formElm) {
-            reqBody[input.name] = input.value
+            if (input.value.length > 0) {
+                reqBody[input.name] = input.value
+            }
         }
         console.log(reqBody);
         const xhr = new XMLHttpRequest();
