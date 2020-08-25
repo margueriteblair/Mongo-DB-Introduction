@@ -56,7 +56,10 @@ window.onload = () => {
     submitButton.onclick = submitReg;
 
     function submitReg() {
-        if (emailInput.value.length < 6 || emailInput.value.length > 200 || !emailInput.value.match(/\@/)) {
+        let passedValidation = true;
+
+        if (emailInput.value.trim().length < 6 || emailInput.value.trim().length > 200 || !emailInput.value.match(/\@[a-z]*\.[a-z]*/)) {
+            //reqBody.email.includes('@') || reqBody.email.substring(email.indexOf('@')).includes('.')
             setTimeout(() => {
                 return alert(`Email must be between 6 and 200 characters and have a valid @.`)
             }, 1000);
@@ -68,8 +71,9 @@ window.onload = () => {
         if (passwordInput.value !== passwordConfirm.value) {
             return alert(`Passwords must match.`)
         }
-        if (passwordInput.value.length < 7) {
+        if (passwordInput.value.trim().length < 7) {
                 return alert(`Password needs minimum value of 7 characters`);
+                passedValidation = false;
 
         }
         const formElem = document.getElementById('form');

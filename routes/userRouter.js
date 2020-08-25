@@ -2,7 +2,7 @@ const User = require('../models/User') //this requires the User model
 const {Router} = require('express');
 const findUser = require('../middleware/findUser');
 //uppercase indicates that it's a class
-
+//backend validation: 1. ensure email/username aren't duplicates, check password length, validate email and username for constraints before mongoose does it for us
 const router = new Router();
 
 router.patch('/login', (req, res) => {
@@ -19,7 +19,6 @@ router.patch('/login', (req, res) => {
         }
     }
 )
-
 router.post(
     '/register',
     async (req, res) => {

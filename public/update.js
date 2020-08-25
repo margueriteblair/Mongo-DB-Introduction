@@ -43,11 +43,11 @@ window.onload = () => {
         } else if (userID.length !== 24){
             return alert(`ID must be in proper format with 24 characters`)
         }
-        
+
         console.log(`Passes ID test.`)
         for (const input of formElm) {
             if (input.value.trim() !== "" && input.name !== 'id') {
-                reqBody[input.name] = input.value
+                reqBody[input.name] = input.value.trim();
             } else if (input.name !== 'id'){
                 const missinginputs = [];
                 missinginputs.push(input.name)
