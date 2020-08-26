@@ -38,18 +38,20 @@ router.post(
         try {
             const emailExist = User.findOne({email: email}) !== null;
             const usernameExist = User.findOne({username: username}) !== null;
-            if (!emailExist || !usernameExist) {
+            const validationErrors = [];
+            if (emailExist || !usernameExist) {
                 const data = [];
-                if (!emailExist) {
-                    data.push('email')
+                if (emailExist) {
+                    data.push({key: 'email', error: 'email is in use'})
                 }
                 if (!usernameExist) {
-                    data.push('username');
+                    data.push({key: 'username', error: 'username is in use'});
                 }
-                return res.status(409).json({message:'data already in use', data: data})
+                if (password.length < 7) validationErrors.push({key: 'password', error: 'password didnt meet requirements' })
             }
+            //if this array has more than 0 elements, respond with the array of errors
             await User.create(req.body);
-            res.json({message: 'success!'})
+            res.status(201).json({message: 'success!'}) //201 is specific youve created a document in the DB
         } catch (error) {
             res.status(500).json({message: error.message})
         }
