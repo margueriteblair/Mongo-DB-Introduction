@@ -7,24 +7,40 @@ const router = new Router();
 
 router.patch('/login', (req, res) => {
         console.log(req.body, 'LoginTest');
-        try {
-            res.json({message: 'success!'})
-        }
-        catch (error){
-            console.error(error.message);
-
-            res.status(500).json({
-                message: error.message
-            })
-        }
+        const userObj = await User.findOne({email: req.body.email})
+            try {
+                res.json({message: 'success!'})
+            }
+            catch (error){
+                console.error(error.message);
+    
+                res.status(500).json({
+                    message: error.message
+                })
     }
-)
 router.post(
     '/register',
     async (req, res) => {
-        console.log('test', req.body);
+        const {email, username, password} = req.body //this is a concept called object destructuring
+        //if you want an alius for the name, then :alias
+        // = to set a default value
+        // const email = req.body.email
+        // const password = req.body.password
 
+        // if (email === undefined) {
+        //     email = 'default email'
+        // }
+
+        // const username = req.body.username === undefined? 'default username' : req.body.username ;
+        if (email === undefined || username === undefined || password === undefined) {
+            return res.status(400).json({message: 'Failure to input correct information'})  //error status 400 because it's the users fault
+        }
         try {
+            const emailExist = User.findOne({email: email}) !== null;
+            const usernameExist = User.findOne({username: username}) !== null;
+            if (!emailExist || !usernameExist) {
+                
+            }
             await User.create(req.body);
             res.json({message: 'success!'})
         } catch (error) {
