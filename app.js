@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
 const morgan = require('morgan');
+const validator = require('validator');
 
 //imported middleware
 const firstMid = require('./middleware/firstMiddleware')

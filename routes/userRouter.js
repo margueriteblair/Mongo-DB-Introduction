@@ -55,7 +55,7 @@ router.post(
         } catch (error) {
             res.status(500).json({message: error.message})
         }
-        }
+    }
 )
 //to update information
 router.put('/update/:id', async (req, res) => {
