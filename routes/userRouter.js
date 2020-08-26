@@ -39,7 +39,14 @@ router.post(
             const emailExist = User.findOne({email: email}) !== null;
             const usernameExist = User.findOne({username: username}) !== null;
             if (!emailExist || !usernameExist) {
-                
+                const data = [];
+                if (!emailExist) {
+                    data.push('email')
+                }
+                if (!usernameExist) {
+                    data.push('username');
+                }
+                return res.status(409).json({message:'data already in use', data: data})
             }
             await User.create(req.body);
             res.json({message: 'success!'})
