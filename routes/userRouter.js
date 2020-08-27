@@ -39,12 +39,12 @@ router.post(
             const emailExist = User.findOne({email: email}) !== null;
             const usernameExist = User.findOne({username: username}) !== null;
             const validationErrors = [];
-            if (emailExist || !usernameExist) {
+            if (!emailExist || !usernameExist) {
                 const data = [];
                 if (emailExist) {
                     data.push({key: 'email', error: 'email is in use'})
                 }
-                if (!usernameExist) {
+                if (usernameExist) {
                     data.push({key: 'username', error: 'username is in use'});
                 }
                 if (password.length < 7) validationErrors.push({key: 'password', error: 'password didnt meet requirements' })

@@ -13,6 +13,7 @@ const findUser = require('./middleware/findUser')
 let app = express();
 app.use(express.static('public'))
 app.use(express.json())
+app.use(validator); //this allows validator to be used across all pages in the application
 
 //env vars
 const port = process.env.PORT || 3000
