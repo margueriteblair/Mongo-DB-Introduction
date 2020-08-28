@@ -2,7 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
-const morgan = require('morgan');
+const morgan = require('morgan'); //morgan is an http logger middleware
 const validator = require('validator');
 
 //imported middleware
@@ -13,7 +13,7 @@ const findUser = require('./middleware/findUser')
 let app = express();
 app.use(express.static('public'))
 app.use(express.json())
-app.use(validator); //this allows validator to be used across all pages in the application
+//app.use(validator); //this allows validator to be used across all pages in the application
 
 //env vars
 const port = process.env.PORT || 3000
@@ -39,7 +39,7 @@ const homeRouter = require('./routes/homeRouter')
 const userRouter = require('./routes/userRouter')
 
 //middlewares
-app.use(morgan('dev'))
+app.use(morgan('dev')) //the string tells morgan which logged format you would prefer
 
 
 app.use('/', homeRouter);
