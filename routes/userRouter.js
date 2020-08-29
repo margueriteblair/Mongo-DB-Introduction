@@ -8,11 +8,15 @@ const router = new Router();
 router.patch('/login', async (req, res) => {
         console.log(req.body, 'LoginTest');
         const {email, username, password} = req.body
-        const userObj = await User.findOne({email: req.body.email}.exec()) //potentially put a callback into .exec
-        // if (userObj === null) {
-        //     return alert(`Please enter a correct email`)
-        // }
             try {
+                const userObj = await User.findOne({email: req.body.email}).catch() //potentially put a callback into .exec
+                if (userObj === null) {
+                    return res.status(400).json({message: 'Failure to input valid email'})  //error status 400 because it's the users fault
+                } //you can only use alert on the frontend
+                //400 error message is produced because the user did something wrong, input information incorrectly
+                if (userObj.password !== req.body.password) {
+                    return res.status(400).json({message: 'Failure to input correct password'})
+                }
                 res.json({message: 'success!'})
             }
             catch (error){
