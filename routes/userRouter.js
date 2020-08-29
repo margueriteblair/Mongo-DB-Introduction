@@ -5,9 +5,13 @@ const findUser = require('../middleware/findUser');
 //backend validation: 1. ensure email/username aren't duplicates, check password length, validate email and username for constraints before mongoose does it for us
 const router = new Router();
 
-router.patch('/login', (req, res) => {
+router.patch('/login', async (req, res) => {
         console.log(req.body, 'LoginTest');
-        const userObj = await User.findOne({email: req.body.email})
+        const {email, username, password} = req.body
+        const userObj = await User.findOne({email: req.body.email}.exec()) //potentially put a callback into .exec
+        // if (userObj === null) {
+        //     return alert(`Please enter a correct email`)
+        // }
             try {
                 res.json({message: 'success!'})
             }
@@ -17,7 +21,8 @@ router.patch('/login', (req, res) => {
                 res.status(500).json({
                     message: error.message
                 })
-    }
+            }})
+
 router.post(
     '/register',
     async (req, res) => {

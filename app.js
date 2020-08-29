@@ -2,7 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
-const morgan = require('morgan'); //morgan is an http logger middleware
+const morgan = require('morgan'); //morgan is an http logger middleware, that's what tells us what type of req and to what route it went
 const validator = require('validator');
 
 //imported middleware
