@@ -64,7 +64,7 @@ window.onload = () => {
                 return alert(`Email must be between 6 and 200 characters and have a valid @.`)
             }, 1000);
         }
-        if (userNameInput.value.length < 7 || emailInput.value.length > 33) {
+        if (userNameInput.value.length < 7 || userNameInput.value.length > 33) {
             return alert(`Username must be between 7 and 33.`)
 
         }

@@ -44,7 +44,23 @@ window.onload = () => {
             return alert(`ID must be in proper format with 24 characters`)
         }
 
-        console.log(`Passes ID test.`)
+        if (newEmail.value.trim().length < 6 || newEmail.value.trim().length > 200 || !newEmail.value.match(/\@[a-z]*\.[a-z]*/)) {
+            //reqBody.email.includes('@') || reqBody.email.substring(email.indexOf('@')).includes('.')
+                return alert(`Email must be between 6 and 200 characters and have a valid @.`)
+        }
+        if (newUsername.value.length < 7 || newUsername.value.length > 33) {
+            return alert(`Username must be between 7 and 33.`)
+
+        }
+        if (newPassword.value.trim().length < 7) {
+                return alert(`Password needs minimum value of 7 characters`);
+                passedValidation = false; //why did we put this after? return already halts the program
+
+        }
+
+
+
+        console.log(`All inputs pass frontend validation test.`)
         for (const input of formElm) {
             if (input.value.trim() !== "" && input.name !== 'id') {
                 reqBody[input.name] = input.value.trim();

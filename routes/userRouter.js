@@ -67,7 +67,7 @@ router.post(
     }
 )
 //to update information
-router.put('/update/:id', async (req, res) => {
+router.put('/update/:id', findUser ,async (req, res) => {
     try {
         const updatedUser = await User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
         res.json(updatedUser)
