@@ -58,8 +58,6 @@ window.onload = () => {
 
         }
 
-
-
         console.log(`All inputs pass frontend validation test.`)
         for (const input of formElm) {
             if (input.value.trim() !== "" && input.name !== 'id') {
