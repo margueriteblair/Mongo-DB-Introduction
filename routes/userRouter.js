@@ -1,6 +1,7 @@
 const User = require('../models/User') //this requires the User model
 const {Router} = require('express');
 const findUser = require('../middleware/findUser');
+const validateUser = require('../middleware/validateRegister')
 //uppercase indicates that it's a class
 //backend validation: 1. ensure email/username aren't duplicates, check password length, validate email and username for constraints before mongoose does it for us
 const router = new Router();
@@ -29,6 +30,7 @@ router.patch('/login', async (req, res) => {
 
 router.post(
     '/register',
+    validateUser,
     async (req, res) => {
         const {email, username, password} = req.body //this is a concept called object destructuring
         try {
