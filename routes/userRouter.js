@@ -31,34 +31,7 @@ router.post(
     '/register',
     async (req, res) => {
         const {email, username, password} = req.body //this is a concept called object destructuring
-        //if you want an alius for the name, then :alias
-        // = to set a default value
-        // const email = req.body.email
-        // const password = req.body.password
-
-        // if (email === undefined) {
-        //     email = 'default email'
-        // }
-
-        // const username = req.body.username === undefined? 'default username' : req.body.username ;
-        if (email === undefined || username === undefined || password === undefined) {
-            return res.status(400).json({message: 'Failure to input correct information'})  //error status 400 because it's the users fault
-        }
         try {
-            const emailExist = User.findOne({email: email}) !== null;
-            const usernameExist = User.findOne({username: username}) !== null;
-            const validationErrors = [];
-            if (!emailExist || !usernameExist) {
-                const data = [];
-                if (emailExist) {
-                    data.push({key: 'email', error: 'email is in use'})
-                }
-                if (usernameExist) {
-                    data.push({key: 'username', error: 'username is in use'});
-                }
-                if (password.length < 7) validationErrors.push({key: 'password', error: 'password didnt meet requirements' })
-            }
-            //if this array has more than 0 elements, respond with the array of errors
             await User.create(req.body);
             res.status(201).json({message: 'success!'}) //201 is specific youve created a document in the DB
         } catch (error) {
