@@ -32,7 +32,6 @@ router.post(
     '/register',
     validateUser,
     async (req, res) => {
-        const {email, username, password} = req.body //this is a concept called object destructuring
         try {
             await User.create(req.body);
             res.status(201).json({message: 'success!'}) //201 is specific youve created a document in the DB
