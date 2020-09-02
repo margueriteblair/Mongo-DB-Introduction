@@ -11,6 +11,9 @@ module.exports = async (req, res, next) => {
         const validationErrors = [];
         const emailExist = await User.findOne({email: email}) !== null;
         const usernameExist = await User.findOne({username: username}) !== null;
+            if (email !== undefined && !validator.isEmail(email)) {
+                validationErrors.push({key: 'email', error: 'Must be valid email address'})
+            }
             if (emailExist) {
                 validationErrors.push({key: 'email', error: 'email is in use'})
             }
