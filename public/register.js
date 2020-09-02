@@ -60,13 +60,10 @@ window.onload = () => {
 
         if (emailInput.value.trim().length < 6 || emailInput.value.trim().length > 200 || !emailInput.value.match(/\@[a-z]*\.[a-z]*/)) {
             //reqBody.email.includes('@') || reqBody.email.substring(email.indexOf('@')).includes('.')
-            setTimeout(() => {
                 return alert(`Email must be between 6 and 200 characters and have a valid @.`)
-            }, 1000);
         }
         if (userNameInput.value.length < 7 || userNameInput.value.length > 33) {
-            return alert(`Username must be between 7 and 33.`)
-
+            return alert(`Username must be between 7 and 33 characters.`)
         }
         if (passwordInput.value !== passwordConfirm.value) {
             return alert(`Passwords must match.`)
@@ -86,6 +83,20 @@ window.onload = () => {
                 return alert(`Missing fields`)
             }
         }
+        fetch(endpoint, reqBody)
+        .then(res => res.json())
+        .then(res => {
+            if (res.status !== 201) {
+                let errors = res.validationErrors;
+                let errorsMessages = [];
+
+                errors.forEach(error => {const {field, msg} = error;
+                errorsMessages.push(`${field}: ${msg}`)
+                })
+                const alertText = errorMsgs.join("\n")
+                return alert(alertText);
+            }
+        })
         console.log(reqBody)
         const endpoint = location.origin + '/user/register';
         const xhr = new XMLHttpRequest();
@@ -96,6 +107,10 @@ window.onload = () => {
         }
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(JSON.stringify(reqBody))
+
+
     }
     }
+
+    
     
