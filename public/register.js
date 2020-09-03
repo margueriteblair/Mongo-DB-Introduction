@@ -83,6 +83,8 @@ window.onload = () => {
                 return alert(`Missing fields`)
             }
         }
+        const endpoint = location.origin + '/user/register';
+
         fetch(endpoint, reqBody)
         .then(res => res.json())
         .then(res => {
@@ -98,7 +100,6 @@ window.onload = () => {
             }
         })
         console.log(reqBody)
-        const endpoint = location.origin + '/user/register';
         const xhr = new XMLHttpRequest();
         xhr.open('POST', endpoint);
         xhr.onload = () => {
