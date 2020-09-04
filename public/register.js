@@ -105,6 +105,18 @@ window.onload = () => {
         xhr.onload = () => {
             const res = JSON.parse(xhr.responseText)
             console.log(res)
+
+            if (xhr.status === 201) {
+                alert(`Your account was created successfully`)
+            } else if(xhr.status === 400 && res.validationErrors !== undefined) {
+                const errMsg = res.validationErrors.map(error => {
+                    console.log(error.key)
+                    return `Error with: ${error.key}: ${error.error}`
+                }).join('\n\n');
+                alert(errMsg);
+            }else {
+                alert(`Unknown server error occured`)
+            }
         }
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(JSON.stringify(reqBody))
