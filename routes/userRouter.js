@@ -2,6 +2,7 @@ const User = require('../models/User') //this requires the User model
 const {Router} = require('express');
 const findUser = require('../middleware/findUser');
 const validateUser = require('../middleware/validateRegister')
+const passEncrypt = require('../middleware/passEncrypt')
 //uppercase indicates that it's a class
 //backend validation: 1. ensure email/username aren't duplicates, check password length, validate email and username for constraints before mongoose does it for us
 const router = new Router();
@@ -31,6 +32,7 @@ router.patch('/login', async (req, res) => {
 router.post(
     '/register',
     validateUser,
+    passEncrypt,
     async (req, res) => {
         try {
             await User.create(req.body);

@@ -8,6 +8,7 @@ const validator = require('validator');
 //imported middleware
 const firstMid = require('./middleware/firstMiddleware')
 const findUser = require('./middleware/findUser')
+const passEncrypt = require('./middleware/passEncrypt')
 
 //setting up 
 let app = express();
