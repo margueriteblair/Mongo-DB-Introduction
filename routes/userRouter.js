@@ -7,7 +7,12 @@ const passEncrypt = require('../middleware/passEncrypt')
 //backend validation: 1. ensure email/username aren't duplicates, check password length, validate email and username for constraints before mongoose does it for us
 const router = new Router();
 
-router.patch('/login', async (req, res) => {
+router.patch('/login',
+    //check the user's credntials and make sure they match what's in the db
+    //create a JWT
+    //send the JWT to the frontend!
+    //JWT are stored ONLY on the frontend
+        async (req, res) => {
         console.log(req.body, 'LoginTest');
         const {email, username, password} = req.body
             try {
