@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const User = require('../models/User')
 const validator = require('validator').default;
+const bcrypt = require('bcrypt');
 
 
 module.exports = async (req, res, next) => {
@@ -35,24 +36,15 @@ module.exports = async (req, res, next) => {
                     "validation errors" : validationErrors
                 })
             } else {
-                //sanitize individual
-                //create a new object, only include the fields that we need (username, email, password in this case) (preferred approach for gabe)
+                //create a new object with only the fields we need
                 const sanitizedData = {
                     username: username.trim(),
                     email: email.trim(),
-                    password: password.trim()
+                    password: password
                 }
 
                 req.sanitized = sanitizedData;
                 
-                //we pass password 2 to the backend
-                //remove uneeded / security risking fields 
-
-                //delete req.body.password2;
-
-                //could possibly sent via postman we can put in a ton of keys via postman
-                //delete req.body.emailValidated
-
 
                 next();
             }
