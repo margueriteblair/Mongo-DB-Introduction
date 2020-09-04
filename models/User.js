@@ -23,6 +23,9 @@ const UserSchema = new mongoose.Schema({
     emailValidated: { 
         type:Boolean,
         default: false,
+    },
+    isAdmin: {
+        //if we don't sanitize data, they can make themselves an admin using just postman
     }
 
 })
