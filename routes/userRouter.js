@@ -3,28 +3,23 @@ const {Router} = require('express');
 const findUser = require('../middleware/findUser');
 const validateUser = require('../middleware/validateRegister')
 const passEncrypt = require('../middleware/passEncrypt')
+const checkUserCred = require('../middleware/checkUserCred')
+const createJWT = require('../middleware/createJWT');
 //uppercase indicates that it's a class
 //backend validation: 1. ensure email/username aren't duplicates, check password length, validate email and username for constraints before mongoose does it for us
 const router = new Router();
 
 router.patch('/login',
+        checkUserCred,
+        createJWT,
     //check the user's credntials and make sure they match what's in the db
-    //create a JWT
-    //send the JWT to the frontend!
     //JWT are stored ONLY on the frontend
-        async (req, res) => {
+        (req, res) => {
         console.log(req.body, 'LoginTest');
+
         const {email, username, password} = req.body
             try {
-                const userObj = await User.findOne({email: req.body.email}).catch() //potentially put a callback into .exec
-                if (userObj === null) {
-                    return res.status(400).json({message: 'Failure to input valid email'})  //error status 400 because it's the users fault
-                } //you can only use alert on the frontend
-                //400 error message is produced because the user did something wrong, input information incorrectly
-                if (userObj.password !== req.body.password) {
-                    return res.status(400).json({message: 'Failure to input correct password'})
-                }
-                res.json({message: 'success!'})
+                res.json({token: req.createJWT})
             }
             catch (error){
                 console.error(error.message);
